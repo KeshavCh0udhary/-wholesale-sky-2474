@@ -1,0 +1,19 @@
+create table GPM(
+  Name varchar(15),
+  Email varchar(15),
+  Password varchar(15),
+  Area varchar(15),
+  Pincode int,
+  Age int,
+  GPMid int
+);
+
+create table Project(
+  Name varchar(15),
+  Area varchar(15),
+  Pincode int,
+  Total_members int,
+  Estimated_cost int,
+  Start_date varchar(15),
+  End_date varchar(15)
+);
