@@ -12,7 +12,7 @@ public class Login {
 	Scanner sc_obj = new Scanner(System.in);
 	BDO bdo = new BDO();
 	GPM gpm = new GPM();
-	Member member = new Member();
+	Employee member = new Employee();
 	
 	public void login_choice() throws SQLException, ParseException, IOException {
 		
@@ -20,7 +20,7 @@ public class Login {
 				+ "1. BDO Login \n"
 				+ "2. GPM Login \n"
 				+ "3. Member Login \n"
-				+ "4. Exit");
+				+ "4. Exit \n");
 		
 		int lc = sc_obj.nextInt();
 		
@@ -34,7 +34,7 @@ public class Login {
 			break;
 			
 		case 3:
-			member.member_login();
+			member.employee_login();
 			break;
 		
 		case 4:

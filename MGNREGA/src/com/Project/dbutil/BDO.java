@@ -85,14 +85,14 @@ public class BDO {
 			if (rs.next()) {
                 System.out.println("\n1.Project Name: " + rs.getString(2));
                 System.out.println("\n2.Area: " + rs.getString(3));
-                System.out.println("\n3.Total_Members: " + rs.getInt(5));
+                System.out.println("\n3.Total_Employees: " + rs.getInt(5));
                 System.out.println("\n4.Cost_estimated: " + rs.getFloat(6));
                 System.out.println("\n5.Start_date: " + rs.getDate(7));
                 System.out.println("\n6.End_date: " + rs.getDate(8));
 
 			System.out.println("What would you want to update ?\n"
 					+ "1. Area \n"
-					+ "2. Total Members \n"
+					+ "2. Total Employees \n"
 					+ "3. Cost estimated \n");
 
 			int up = sc_obj.nextInt();
@@ -107,9 +107,9 @@ public class BDO {
 				break;
 
 			case 2:
-				System.out.println("Enter Total members:");
+				System.out.println("Enter Total employees:");
 				String tot = bufferedReader.readLine();
-				statement.executeUpdate("Update Project set Total_members ='" + tot + "' where Id = '" + id + "' ");
+				statement.executeUpdate("Update Project set Total_Employees ='" + tot + "' where Id = '" + id + "' ");
 				System.out.println("Done");
 				break;
 
@@ -146,8 +146,8 @@ public class BDO {
 			System.out.println("Enter pincode:");
 			int pincode = sc_obj.nextInt();
 			sc_obj.nextLine();
-			System.out.println("Enter total members:");
-			int totalmembers = sc_obj.nextInt();
+			System.out.println("Enter total Employees:");
+			int totalemployees = sc_obj.nextInt();
 			sc_obj.nextLine();
 			System.out.println("Enter estimated cost:");
 			int cost = sc_obj.nextInt();
@@ -162,14 +162,14 @@ public class BDO {
 			java.util.Date edate = new java.util.Date(enddate);
             java.sql.Date conv_edate = new java.sql.Date(edate.getTime());
 
-			statement.executeUpdate("insert into Project(Project_Name,Area,Pincode,Total_members,Cost_estimated,Start_date,End_date)" +
-					"values('" + name + "','" + area + "','" + pincode + "','" + totalmembers + "','" + cost + "','" + conv_sdate + "','" + conv_edate + "')");
+			statement.executeUpdate("insert into Project(Name,Area,Pincode,Total_members,Estimated_cost,Start_date,End_date)" +
+					"values('" + name + "','" + area + "','" + pincode + "','" + totalemployees + "','" + cost + "','" + conv_sdate + "','" + conv_edate + "')");
 
 			System.out.println("Done");
 			statement.close();
 
 		} catch (SQLException e) {
-			System.out.println("Error is:" + e.getMessage());
+			System.out.println("Error is: " + e.getMessage());
 		} finally {
 			functions();
 		}
@@ -180,7 +180,7 @@ public class BDO {
 			Statement statement = con.createStatement();
 			System.out.print("Enter Id to delete a GPM: ");
 			int id = sc_obj.nextInt();
-			statement.executeUpdate("Delete from GPM where Id = '"+id+"'");
+			statement.executeUpdate("Delete from GPM where GPMid = '"+id+"'");
 			con.close();
 			System.out.print("Done");
 		} catch (Exception e) {
@@ -195,12 +195,12 @@ public class BDO {
 			System.out.print("Enter GPM Email_Id: ");
 			String Email = bufferedReader.readLine();
 
-			ResultSet rs = statement.executeQuery("select * from GPM where Email_id = '" + Email + "' ");
+			ResultSet rs = statement.executeQuery("select * from GPM where Email = '" + Email + "' ");
 			if (rs.next()) {
-				System.out.print("1.Name: " + rs.getString(2));
-				System.out.print("\n2.Password: " + rs.getString(4));
-				System.out.print("\n3.Area: " + rs.getString(5));
-				System.out.print("\n4.Pincode: " + rs.getInt(6));
+				System.out.print("1.Name: " + rs.getString(1));
+				System.out.print("\n2.Password: " + rs.getString(3));
+				System.out.print("\n3.Area: " + rs.getString(4));
+				System.out.print("\n4.Pincode: " + rs.getInt(5));
 
 				System.out.println("\nWhat would you want to update ?\n"
 						+ "1. Name \n"
@@ -215,28 +215,28 @@ public class BDO {
 				case 1:
 					System.out.println("Enter new name:");
 					String name = bufferedReader.readLine();
-					statement.executeUpdate("Update GPM set Name ='" + name + "' where Email_id = '" + Email + "' ");
+					statement.executeUpdate("Update GPM set Name ='" + name + "' where Email = '" + Email + "' ");
 					System.out.println("Done");
 					break;
 
 				case 2:
 					System.out.println("Enter new password:");
 					String pw = bufferedReader.readLine();
-					statement.executeUpdate("Update GPM set Password ='" + pw + "' where Email_id = '" + Email + "' ");
+					statement.executeUpdate("Update GPM set Password ='" + pw + "' where Email = '" + Email + "' ");
 					System.out.println("Done");
 					break;
 
 				case 3:
 					System.out.println("Enter to update Area");
 					String area = bufferedReader.readLine();
-					statement.executeUpdate("Update GPM set Area ='" + area + "' where Email_id = '" + Email + "' ");
+					statement.executeUpdate("Update GPM set Area ='" + area + "' where Email = '" + Email + "' ");
 					System.out.println("Done");
 					break;
 
 				case 4:
 					System.out.println("Enter to update Pincode");
 					String pin = bufferedReader.readLine();
-					statement.executeUpdate("Update GPM set Pincode ='" + pin + "' where Email_id = '" + Email + "' ");
+					statement.executeUpdate("Update GPM set Pincode ='" + pin + "' where Email = '" + Email + "' ");
 					System.out.println("Done");
 					break;
 
@@ -269,11 +269,11 @@ public class BDO {
 			String area = sc_obj.nextLine();
 			System.out.println("Enter PinCode:");
 			int pincode = sc_obj.nextInt();
-			System.out.println("Enter BDO id:");
-			int bdo_id = sc_obj.nextInt();
+			System.out.println("Enter GPM id:");
+			int gmp_id = sc_obj.nextInt();
 
-			statement.execute("insert into BDO(Name,Email,Password,Area,Pincode,Bdoid)" +
-					"values('" + name + "','" + email_id + "','" + password + "','" + area + "','" + pincode + "','" + bdo_id + "')");
+			statement.execute("insert into GPM(Name,Email,Password,Area,Pincode,GPMid)" +
+					"values('" + name + "','" + email_id + "','" + password + "','" + area + "','" + pincode + "','" + gmp_id + "')");
 			System.out.println("Done");
 			statement.close();
 
@@ -287,11 +287,11 @@ public class BDO {
 	public void bdo_login() throws SQLException, ParseException, IOException {
 		try {
 			Statement statement = con.createStatement();
-			System.out.print("Enter Email_Id: ");
+			System.out.print("Enter Email_Id: \n");
 			String Email = sc_obj.nextLine();
-			System.out.print("Enter Password: ");
+			System.out.print("Enter Password: \n");
 			String Password = sc_obj.nextLine();
-			ResultSet rs = statement.executeQuery("select * from GPM where Email = '" + Email + "'  AND Password = '" + Password + "'");
+			ResultSet rs = statement.executeQuery("select * from BDO where Email = '" + Email + "'  AND Password = '" + Password + "'");
 			if (rs.next()) {
 				System.out.print("\nWelcome...Block Development Officer \n");
 				functions();

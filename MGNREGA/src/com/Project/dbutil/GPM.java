@@ -14,9 +14,9 @@ public class GPM {
 
 	public void functions() throws SQLException, ParseException, IOException {
 		System.out.print("Choose an appropriate option. \n "
-				+ "1.Create Member \n"
-				+ "2.Update Member \n"
-				+ "3.Delete Member \n"
+				+ "1.Create Employee \n"
+				+ "2.Update Employee \n"
+				+ "3.Delete Employee \n"
 				+ "4.Issue Job Card \n"
 				+ "5.Work allotment \n"
 				+ "6.Exit \n");
@@ -26,15 +26,15 @@ public class GPM {
 		switch(option) {
 
 		case 1:
-			create_member();
+			create_employee();
 			break;
 
 		case 2:
-			update_member();
+			update_employee();
 			break;
 
 		case 3:
-			delete_member();
+			delete_employee();
 			break;
 
 		case 4:
@@ -55,7 +55,7 @@ public class GPM {
 		}
 	}
 
-	public void create_member() throws SQLException, ParseException, IOException {
+	public void create_employee() throws SQLException, ParseException, IOException {
 		try {
 			Statement statement = con.createStatement();
 			sc_obj.nextLine();
@@ -77,7 +77,7 @@ public class GPM {
 			System.out.println("Enter GPM id");
 			int id = sc_obj.nextInt();
 
-			statement.execute("insert into Member(Name,Email,Password,Area,Pincode,Age,Gpmid)" +
+			statement.execute("insert into Employee(Name,Email,Password,Area,Pincode,Age,Gpmid)" +
 					"values('" + name + "','" + email + "','" + password + "','" + area + "','" + pincode + "','" + age + "','" + id + "')");
 			System.out.println("Done");
 			statement.close();
@@ -88,14 +88,14 @@ public class GPM {
 		}
 	}
 
-	public void update_member() throws IOException, SQLException, ParseException {
+	public void update_employee() throws IOException, SQLException, ParseException {
 		try {
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 			Statement statement = con.createStatement();
-			System.out.print("Enter Member Email_Id: ");
+			System.out.print("Enter Employee Email_Id: ");
 			String Email = bufferedReader.readLine();
 
-			ResultSet rs = statement.executeQuery("select * from Member where Email = '" + Email + "' ");
+			ResultSet rs = statement.executeQuery("select * from Employee where Email = '" + Email + "' ");
 
 			if (rs.next()) {
 				System.out.print("1.Name: " + rs.getString(1));
@@ -117,35 +117,35 @@ public class GPM {
 				case 1:
 					System.out.println("Enter new name:");
 					String name = bufferedReader.readLine();
-					statement.executeUpdate("Update Member set Name ='" + name + "' where Email = '" + Email + "' ");
+					statement.executeUpdate("Update Employee set Name ='" + name + "' where Email = '" + Email + "' ");
 					System.out.println("Done");
 					break;
 
 				case 2:
 					System.out.println("Enter new password:");
 					String pw = bufferedReader.readLine();
-					statement.executeUpdate("Update Member set Password ='" + pw + "' where Email = '" + Email + "' ");
+					statement.executeUpdate("Update Employee set Password ='" + pw + "' where Email = '" + Email + "' ");
 					System.out.println("Password has changed");
 					break;
 
 				case 3:
 					System.out.println("Enter to update Area");
 					String area = bufferedReader.readLine();
-					statement.executeUpdate("Update Member set Area ='" + area + "' where Email = '" + Email + "' ");
+					statement.executeUpdate("Update Employee set Area ='" + area + "' where Email = '" + Email + "' ");
 					System.out.println("Done");
 					break;
 
 				case 4:
 					System.out.println("Enter to update Pincode");
 					String pin = bufferedReader.readLine();
-					statement.executeUpdate("Update Member set Pincode ='" + pin + "' where Email = '" + Email + "' ");
+					statement.executeUpdate("Update Employee set Pincode ='" + pin + "' where Email = '" + Email + "' ");
 					System.out.println("Done");
 					break;
 
 				case 5:
 					System.out.println("Enter to update Age");
 					String age = bufferedReader.readLine();
-					statement.executeUpdate("Update Member set Age ='" + age + "' where Email = '" + Email + "' ");
+					statement.executeUpdate("Update Employee set Age ='" + age + "' where Email = '" + Email + "' ");
 					System.out.println("Done");
 					break;
 
@@ -163,12 +163,12 @@ public class GPM {
 		}
 	}
 
-	public void delete_member() {
+	public void delete_employee() {
 		try {
 			Statement statement = con.createStatement();
-			System.out.print("Enter Id to delete a Member: ");
+			System.out.print("Enter Id to delete a Employee: ");
 			int id = sc_obj.nextInt();
-			statement.executeUpdate("Delete from Member where Id = '"+id+"'");
+			statement.executeUpdate("Delete from Employee where Id = '"+id+"'");
 			System.out.print("Done");
 
 		} catch (Exception e) {
@@ -179,13 +179,13 @@ public class GPM {
 	public void issue_job_card() throws SQLException, ParseException, IOException {
 		try {
 			Statement statement = con.createStatement();
-			System.out.println("Enter Member Id:");
+			System.out.println("Enter Employee Id:");
 			int mid = sc_obj.nextInt();
 
-			ResultSet res = statement.executeQuery("select * from Member where Id='" + mid + "'");
+			ResultSet res = statement.executeQuery("select * from Employee where Id='" + mid + "'");
 			if (res.next()) {
 				System.out.println("JOB CARD\n");
-				System.out.println("1.Member Id: " + res.getInt(1));
+				System.out.println("1.Employee Id: " + res.getInt(1));
 				System.out.println("2.Name: " + res.getString(2));              
 				System.out.println("3.Email_id: " + res.getString(3));
 				System.out.println("4.Area: " + res.getString(5));
@@ -208,7 +208,7 @@ public class GPM {
 			System.out.println("Enter Project Id: ");
 			int pid = sc_obj.nextInt();
 
-			System.out.println("Enter Member Id: ");
+			System.out.println("Enter Employee Id: ");
 			int mid = sc_obj.nextInt();
 
 			System.out.println("Enter Gpm Id: ");
