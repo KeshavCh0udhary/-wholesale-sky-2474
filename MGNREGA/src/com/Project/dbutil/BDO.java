@@ -83,12 +83,12 @@ public class BDO {
 			ResultSet rs = statement.executeQuery("select * from Project where Id = '" + id + "' ");
 			
 			if (rs.next()) {
-                System.out.println("\n1.Project Name: " + rs.getString(2));
-                System.out.println("\n2.Area: " + rs.getString(3));
-                System.out.println("\n3.Total_Employees: " + rs.getInt(5));
-                System.out.println("\n4.Cost_estimated: " + rs.getFloat(6));
-                System.out.println("\n5.Start_date: " + rs.getDate(7));
-                System.out.println("\n6.End_date: " + rs.getDate(8));
+                System.out.println("\n1.Project Name: " + rs.getString(1));
+                System.out.println("\n2.Area: " + rs.getString(2));
+                System.out.println("\n3.Total_Employees: " + rs.getInt(4));
+                System.out.println("\n4.Cost_estimated: " + rs.getFloat(5));
+                System.out.println("\n5.Start_date: " + rs.getDate(6));
+                System.out.println("\n6.End_date: " + rs.getDate(7));
 
 			System.out.println("What would you want to update ?\n"
 					+ "1. Area \n"
@@ -109,14 +109,14 @@ public class BDO {
 			case 2:
 				System.out.println("Enter Total employees:");
 				String tot = bufferedReader.readLine();
-				statement.executeUpdate("Update Project set Total_Employees ='" + tot + "' where Id = '" + id + "' ");
+				statement.executeUpdate("Update Project set Total_members ='" + tot + "' where Id = '" + id + "' ");
 				System.out.println("Done");
 				break;
 
 			case 3:
 				System.out.println("Enter Cost estimated:");
 				String ce = bufferedReader.readLine();
-				statement.executeUpdate("Update Project set Cost_estimated ='" + ce + "' where Id = '" + id + "' ");
+				statement.executeUpdate("Update Project set Estimated_cost ='" + ce + "' where Id = '" + id + "' ");
 				System.out.println("Cost estimated has changed");
 				break;
 
@@ -141,6 +141,9 @@ public class BDO {
 
 			System.out.println("Enter project name:");
 			String name = sc_obj.nextLine();
+			System.out.println("Enter project id:");
+			int ID = sc_obj.nextInt();
+			sc_obj.nextLine();
 			System.out.println("Enter area:");
 			String area = sc_obj.nextLine();
 			System.out.println("Enter pincode:");
@@ -162,8 +165,8 @@ public class BDO {
 			java.util.Date edate = new java.util.Date(enddate);
             java.sql.Date conv_edate = new java.sql.Date(edate.getTime());
 
-			statement.executeUpdate("insert into Project(Name,Area,Pincode,Total_members,Estimated_cost,Start_date,End_date)" +
-					"values('" + name + "','" + area + "','" + pincode + "','" + totalemployees + "','" + cost + "','" + conv_sdate + "','" + conv_edate + "')");
+			statement.executeUpdate("insert into Project(Name,Area,Pincode,Id,Total_members,Estimated_cost,Start_date,End_date)" +
+					"values('" + name + "','" + area + "','" + pincode +"','"+ ID +"','" + totalemployees + "','" + cost + "','" + conv_sdate + "','" + conv_edate + "')");
 
 			System.out.println("Done");
 			statement.close();
