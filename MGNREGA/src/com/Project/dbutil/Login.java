@@ -19,7 +19,7 @@ public class Login {
 		System.out.println("Welcome to MGNREGA...Choose the appropriate option \n"
 				+ "1. BDO Login \n"
 				+ "2. GPM Login \n"
-				+ "3. Member Login \n"
+				+ "3. Employee Login \n"
 				+ "4. Exit \n");
 		
 		int lc = sc_obj.nextInt();

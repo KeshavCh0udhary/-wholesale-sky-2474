@@ -15,7 +15,8 @@ create table Project(
   Total_members int,
   Estimated_cost int,
   Start_date varchar(15),
-  End_date varchar(15)
+  End_date varchar(15),
+  Id int
 );
 
 create table Employee(

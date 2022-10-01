@@ -77,7 +77,7 @@ public class GPM {
 			System.out.println("Enter GPM id");
 			int id = sc_obj.nextInt();
 
-			statement.execute("insert into Employee(Name,Email,Password,Area,Pincode,Age,Gpmid)" +
+			statement.execute("insert into Employee(Name,Email,Password,Area,Pincode,Age,Id)" +
 					"values('" + name + "','" + email + "','" + password + "','" + area + "','" + pincode + "','" + age + "','" + id + "')");
 			System.out.println("Done");
 			statement.close();
@@ -185,12 +185,13 @@ public class GPM {
 			ResultSet res = statement.executeQuery("select * from Employee where Id='" + mid + "'");
 			if (res.next()) {
 				System.out.println("JOB CARD\n");
-				System.out.println("1.Employee Id: " + res.getInt(1));
-				System.out.println("2.Name: " + res.getString(2));              
-				System.out.println("3.Email_id: " + res.getString(3));
-				System.out.println("4.Area: " + res.getString(5));
-				System.out.println("5.Pincode: " + res.getInt(6));
-				System.out.println("6.Age: " + res.getInt(7));
+				System.out.println("1.Employee Id: " + res.getInt(7));
+				System.out.println("2.Name: " + res.getString(1));              
+				System.out.println("3.Email_id: " + res.getString(2));
+				System.out.println("4.Area: " + res.getString(4));
+				System.out.println("5.Pincode: " + res.getInt(5));
+				System.out.println("6.Age: " + res.getInt(6));
+				System.out.println("Successfully Admit Card is generated!...");
 			}
 			else
 				System.out.print("Incorrect email/not present");
