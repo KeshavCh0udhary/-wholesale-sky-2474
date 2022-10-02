@@ -2,7 +2,7 @@ MGNREGA
 ===============
 Introduction
 ----
-A console application which has a main page with 3 different types of members i.e BDO , GPM, MEMBER with their respective features, where every option takes user to their respective roles class and introduce to their features. The project is using mysql database to store data.
+A console application which has a main page with 3 different types of members i.e BDO , GPM, Employee with their respective features, where every option takes user to their respective roles class and introduce to their features. The project is using mysql database to store data.
 
 Setup for Running the Project
 ---
